@@ -1,0 +1,76 @@
+\usepackage{xcolor}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsthm,mathdots}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+
+\renewcommand{\thequestion}{\arabic{question} }
+\renewcommand\questionlabel{\llap{\thequestion)}}
+
+
+\usepackage{xcolor}
+\definecolor{SolutionColor}{rgb}{0.1,0.3,1}
+
+\unframedsolutions
+\shadedsolutions
+\definecolor{SolutionColor}{rgb}{0.9,0.9,1}
+\renewcommand{\solutiontitle}{\textbf{Solution}$:\>$  }
+
+
+
+
+%Mathcal and 
+\newcommand{\mb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+
+%Various possibilities for norms
+\newcommand{\norm}[2]{\|#1\|_{#2}}
+\newcommand{\normtwo}[1]{\|#1\|_{2}}
+\newcommand{\normp}[1]{\|#1\|_{p}}
+
+\newcommand{\rn}{\mathbb{R}^n}
+\newcommand{\rnn}{\mathbb{R}^{n\times n}}
+\newcommand{\rmn}{\mathbb{R}^{m\times n}}
+
+
+
+%Boldface for vectors and tildes
+\renewcommand{\vec}[1]{{#1}•}
+\newcommand{\mat}[1]{{#1}•}
+
+\newcommand{\vect}[1]{\widetilde{\boldsymbol{#1}}}
+\newcommand{\matt}[1]{\widetilde{\boldsymbol{#1}}}
+
+%Column and row equivalence
+\newcommand{\roweq}{\stackrel{\text{row}}{\sim}}
+\newcommand{\coleq}{\stackrel{\text{col}}{\sim}}
+
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{fact}{Fact}
+\newtheorem{remark}{Remark}
+
+
+%Vector spaces
+\newcommand{\rank}{\text{rank}\,}
+\renewcommand{\dim}{\text{dim}\,}
+\newcommand{\Span}[1]{\text{Span}\,\{#1\}}
+\newcommand{\basis}[1]{\left\{ #1\right\}}
+
+
+%Matrix environments
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\pmat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+
+%Trace and determinant
+\newcommand{\diag}{\mathsf{diag}\,}
+\newcommand{\range}{\mathsf{range}\,}
+\newcommand{\trace}{\mathsf{trace}\,}
+

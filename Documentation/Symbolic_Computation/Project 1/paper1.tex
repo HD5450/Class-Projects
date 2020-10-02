@@ -1,0 +1,327 @@
+%===============================================
+% MA 522
+% Assignment 1
+%===============================================
+%===============================================
+% Set up
+%===============================================
+
+\documentclass{article}%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{enumitem}%
+\setcounter{MaxMatrixCols}{30}
+%TCIDATA{OutputFilter=latex2.dll}
+%TCIDATA{Version=5.50.0.2960}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+%TCIDATA{Created=Friday, August 21, 2015 08:52:27}
+%TCIDATA{LastRevised=Monday, October 07, 2019 20:07:17}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%BeginMSIPreambleData
+\providecommand{\U}[1]{\protect\rule{.1in}{.1in}}
+%EndMSIPreambleData
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\DeclareMathOperator{\Tr}{Tr}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\begin{document}
+
+\title{Counting number of distinct real roots of Pham system\\(Assignment 1)}
+\author{Mountain Chan / B1-2}
+\maketitle
+
+%===============================================
+%Cover page
+%===============================================
+
+
+%===============================================
+\section{Problem}
+
+\begin{definition}
+[Pham system]A system $f\in\mathbb{C}\left[  x_{1},\ldots,x_{n}\right]^{n}$
+is called a Pham system if it has the following form:%
+\begin{align*}
+f_{1}  &  =x_{1}^{d_{1}}+\sum_{e_{1}+\cdots+e_{n}<d_{1}}a_{1,e}x_{1}^{e_{1}}\cdots x_{n}^{e_{n}}\\
+&  \vdots\\
+f_{n}  &  =x_{1}^{d_{n}}+\sum_{e_{1}+\cdots+e_{n}<d_{n}}a_{n,e}x_{1}^{e_{1}}\cdots x_{n}^{e_{n}}%
+\end{align*}
+
+\begin{remark}
+The pham system has exactly $m=d_{1}\cdots d_{n}$ many complex roots (counting multiplicies). 
+Thus we will study the number of real roots of a real pham system.
+\end{remark}
+\end{definition}
+
+\begin{problem}
+Devise an algorithm with the following specification:
+
+\begin{description}[leftmargin=3em,style=nextline,itemsep=0.5em]
+
+\item[In:] $f\in\mathbb{R}\left[  x_{1},\ldots,x_{n}\right]^{n}$, Pham system
+
+\item[Out:] $N,$ the number of distinct real roots of $f$
+\end{description}
+\end{problem}
+
+\section{Theory}
+
+\begin{definition}[Discriminant matrix]
+Let  $f\in\mathbb{C}\left[  x_{1},\ldots,x_{n}\right] ^{n}$ be a Pham system of degrees 
+$d_{1},\ldots,d_{n}$. 
+Let $m=d_{1}\cdots d_{n}$. 
+Let $z_{1},\ldots,z_{m}\in\mathbb{C}^{n}$ be the complex roots of $f$.
+The discriminant matrix $Q$ of $f$ is defined by
+\[
+Q=VV^{t}%
+\]
+where
+\[
+V=\left[
+\begin{array}
+[c]{ccc}%
+\omega_{1}\left(  z_{1}\right)   & \cdots & \omega_{1}\left(  z_{m}\right)  \\
+\vdots                           &        & \vdots\\
+\omega_{m}\left(  z_{1}\right)   & \cdots & \omega_{m}\left(  z_{m}\right)
+\end{array}
+\right]
+\]
+where%
+\[
+\omega=\left\{  x_{1}^{e_{1}}\cdots x_{n}^{e_{n}}:e_{1}<d_{1},\ldots,e_{n}<d_{n}\right\}
+\]
+
+\end{definition}
+
+\begin{theorem}[Multivariate Hermite]
+\# of distinct real roots of $f=\sigma\left(  Q\right)$
+\end{theorem}
+
+\begin{proof}
+\begin{equation}
+\begin{aligned}
+Q_{ij} &= \sum_{k=1}^{m} \omega_{i}(z_k) \omega_{j}(z_k) \\
+Q_{ij} &= \sum_{p=1}^{s} \omega_{}(\alpha_{p}) \mu_p \omega_{j}(\alpha_{p}) + \sum_{q=1}^{t} v_q (\omega_{i}(\beta_{q}) \omega_{j}(\beta_{q})) + \sum_{q=1}^{t} v_q (\overline{\omega_{i}(\beta_{q})} \, \overline{\omega_{j}(\beta_{q})}) \\
+Q_{ij} &= \sum_{p=1}^{s} \omega_{i}(\alpha_{p}) \mu_p \omega_{j}(\alpha_{p}) + \sum_{q=1}^{t} v_q(\omega_{i}(\beta_{q}) \omega_{j}(\beta_{q}) \overline{\omega_{i}(\beta_{q})} \, \overline{\omega_{j}(\beta_{q})}) \\
+Q_{ij} &= \sum_{p=1}^{s} \omega_{i}(\alpha_{p}) \mu_p \omega_{j}(\alpha_{p}) + \sum_{q=1}^{t} v_q(\omega_{i}(\beta_{q}) \omega_{j}(\beta_{q}) \overline{\omega_{i}(\beta_{q}) \omega_{j}(\beta_{q})}) \\
+Q_{ij} &= \sum_{p=1}^{s} \omega_{i}(\alpha_{p}) \mu_p \omega_{j}(\alpha_{p}) + \sum_{q=1}^{t} 2v_q((\text{Re}(\omega_{i}(\beta_{q})) \text{Re}(\omega_{j}(\beta_{q}) - \text{Im}(\omega_{i}(\beta_{q})) \text{Im}(\omega_{j}(\beta_{q}))) \\
+Q_{ij} &= \sum_{p=1}^{s} \omega_{i}(\alpha_{p}) \mu_p \omega_{j}(\alpha_{p}) + \sum_{q=1}^{t}  \text{Re}(\omega_{i}(\beta_{q})) (2v_q) \text{Re}(\omega_{j}(\beta_{q}) + \sum_{q=1}^{t} \text{Im}(\omega_{i}(\beta_{q})) (-2v_q) \text{Im}(\omega_{j}(\beta_{q})
+\end{aligned}
+\end{equation}
+$$
+D=\left[
+\begin{array}{ccccccccc}
+   \mu_{1}&&  \\
+    &\ddots&  \\
+    &&\mu_{s}\\
+    &&&2v_1 \\
+    &&&&\ddots\\
+    &&&&&2v_{t}\\
+    &&&&&&-2v_{1}\\
+    &&&&&&&\ddots\\
+    &&&&&&&&-2v_{t}
+\end{array}
+\right]
+$$
+$$
+T = \left[
+\begin{array}{ccccccccc}
+   \omega_{0}(\alpha_{1}) & \cdots & \omega_{0}(\alpha_{s}) & \text{Re}(\omega_{0}(\beta_{1})) & \cdots & \text{Re}(\omega_{0}(\beta_{t})) & \text{Im}(\omega_{0}(\beta_{1})) & \cdots & \text{Im}(\omega_{0}(\beta_{t}))\\
+   \vdots & \ddots & \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+   \omega_{m}(\alpha_{1}) & \cdots & \omega_{m}(\alpha_{s}) & \text{Re}(\omega_{m}(\beta_{1})) & \cdots & \text{Re}(\omega_{m}(\beta_{t})) & \text{Im}(\omega_{m}(\beta_{1})) & \cdots & \text{Im}(\omega_{m}(\beta_{t}))
+\end{array}
+\right]
+$$
+$\sigma(D) = (s+t)-t = s = $number of distinct real roots 
+\\ By Sly. Law of Inertia, $\sigma(Q) = \sigma(D)$, hence number of distinct real roots of $f = \sigma(D) = s$
+\end{proof}
+
+\begin{remark}
+Hermite's theorem is \textquotedblleft useless\textquotedblright\ because
+
+\begin{enumerate}
+\item Computation of $Q$ requires computing the roots of $f$.
+
+\item Computation of $\sigma\left(  Q\right)$ requires computing the roots
+of the characteristic polynomial of $Q$.
+\end{enumerate}
+
+\noindent Hence, to make Hermite's theorem useful, we need to find ways to
+
+\begin{enumerate}
+\item Compute $Q$\ \textbf{without} computing the roots of $f$.
+
+\item Compute $\sigma\left(  Q\right)$\textbf{without} 
+computing the roots of the characteristic polynomial of $Q$.
+\end{enumerate}
+
+\noindent In the following, we will tackle the challenges one by one.
+\end{remark}
+
+\begin{definition}
+[Mutipilcation matrix]Let $g\in\mathbb{C}\left[  x_{1},\ldots,x_{n}\right]  $.
+Then the multiplication matrix $M_{g}$ for $g$ is defined by%
+\[
+g\left[
+\begin{array}
+[c]{c}%
+\omega_{1}\\
+\vdots\\
+\omega_{m}%
+\end{array}
+\right]  \equiv_{f}M_{g}\left[
+\begin{array}
+[c]{c}%
+\omega_{1}\\
+\vdots\\
+\omega_{m}%
+\end{array}
+\right]
+\]
+\end{definition}
+
+\begin{theorem}
+We have $Q_{ij}=trM_{\omega_{i}\omega_{j}}$.
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}
+    \item Let $f(z) = 0$
+    \\ $g(z)\left[
+\begin{array}
+[c]{c}%
+\omega_{1}(z)\\
+\vdots\\
+\omega_{m}(z)%
+\end{array}
+\right]  = M_{g}\left[
+\begin{array}
+[c]{c}%
+\omega_{1}(z)\\
+\vdots\\
+\omega_{m}(z)%
+\end{array}
+\right]$
+    \item 
+        $\begin{aligned}
+             Q_{ij} &= \sum_{k=1}^{m} \omega_{i}(z_k) \omega_{j}(z_k) \\
+             Q_{ij} &= \sum_{k=1}^{m} (\omega_{i}\omega_{j})(z_k) \\
+             Q_{ij} &= \sum_{k=1}^{m} g(z_k) \\
+             Q_{ij} &= trM_{\omega_{i}\omega_{j}}
+        \end{aligned}$
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+We have%
+\[
+Q_{ij}=\sum_{\mu\nu}M_{i\mu\nu}M_{j\nu\mu}%
+\]
+where%
+\[
+\omega_{i}\omega_{j}\equiv_{f}\sum_{k}M_{ijk}\omega_{k}%
+\]
+\end{theorem}
+
+\begin{proof}
+\begin{equation}
+\begin{aligned}
+             Q_{ij} &= \sum_{\mu} (M_{\omega_{i} \omega_{j}})_{\mu \mu} \\
+             &= \sum_{\mu} (M_{\omega_{i}} M_{\omega_{j}})_{\mu \mu}
+\end{aligned}
+\end{equation}
+\end{proof}
+
+
+
+\section{Algorithm}
+
+\begin{algorithm}[DiscriminantMatrix]\ 
+
+\begin{description}
+\item[In:] $f\in\mathbb{R}\left[  x_{1},\ldots,x_{n}\right]^{n}$, Pham system
+
+\item[Out:] $Q,$ the discriminant matrix of $f$
+\end{description}
+\begin{enumerate}
+\item $\omega = $ Monomial basis of function $f$
+\item $p = $ dimension of matrix
+\item $Q_{ij} = $ trace of matrix M
+\item $Q_{ij} = tr M_{\omega_i \omega_j}$
+\item Construct $Q$ with dimension $m x m$ from $Q_{ij}$
+\item Return $Q$
+\end{enumerate}
+\end{algorithm}
+
+\begin{remark}
+Recall that Descartes' theorem is exact when all the roots are real.
+\end{remark}
+
+\begin{algorithm}[Signature]\ 
+
+\begin{description}
+\item[In:] $M\in\mathbb{R}^{m\times m}$, symmetric
+
+\item[Out:] $S=\sigma(M)$
+\end{description}
+
+\begin{enumerate}
+\item $C=$ $\left\vert \lambda I-M\right\vert $, the characteristic polynomial of $Q$
+
+\item $m_{+}=$ the sign variation count of the coefficients of $C$
+
+\item $m_{0}=$ the least exponent in $C$
+
+\item $m_{-}=m-m_{+}-m_{0}$
+
+\item $S=m_{+}-m_{-}$
+
+\item Return $S$
+\end{enumerate}
+\end{algorithm}
+
+\begin{algorithm}[NumberDistinctRealRoots]\ 
+
+\begin{description}
+\item[In:] $f\in\mathbb{R}\left[  x_{1},\ldots,x_{n}\right]  ^{n}$, Pham system
+
+\item[Out:] $N$, the number of distinct real roots of $f$
+\end{description}
+
+\begin{enumerate}
+\item $Q=DiscriminantMatrix\left(  f\right)  $
+
+\item $N=Signature\left(  Q\right)  $
+
+\item Return $N$
+\end{enumerate}
+\end{algorithm}
+
+
+\end{document}
